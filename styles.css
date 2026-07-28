@@ -157,11 +157,14 @@ a {
 }
 
 .nav-links a {
-  transition: color 180ms var(--ease);
+  transition:
+    color 180ms var(--ease),
+    translate 180ms var(--ease);
 }
 
 .nav-links a:hover {
   color: var(--ink);
+  translate: 0 -1px;
 }
 
 .header-call {
@@ -374,6 +377,18 @@ h3 {
     inset 0 -1px 0 oklch(0 0 0 / 0.34),
     0 1px 8px oklch(0 0 0 / 0.22);
   text-shadow: 0 1px 1px oklch(0 0 0 / 0.78);
+  transition:
+    border-color 180ms var(--ease),
+    box-shadow 180ms var(--ease),
+    translate 180ms var(--ease);
+}
+
+.hero-service-line span:hover {
+  border-color: oklch(0.92 0.04 78 / 0.72);
+  box-shadow:
+    inset 0 -1px 0 oklch(0 0 0 / 0.34),
+    0 8px 18px oklch(0 0 0 / 0.25);
+  translate: 0 -2px;
 }
 
 .hero-actions {
@@ -393,11 +408,16 @@ h3 {
   font-weight: 700;
   transition:
     transform 180ms var(--ease),
-    background 180ms var(--ease);
+    background 180ms var(--ease),
+    border-color 180ms var(--ease);
 }
 
 .button:hover {
   transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.985);
 }
 
 .button.primary {
@@ -1000,6 +1020,245 @@ h3 {
   align-items: center;
   max-width: 720px;
   font-size: 0.9rem;
+}
+
+@keyframes headerSet {
+  from {
+    opacity: 0;
+    translate: 0 -16px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes signSettle {
+  0% {
+    opacity: 0;
+    rotate: -5deg;
+    scale: 0.96;
+    translate: 30px -18px;
+  }
+
+  68% {
+    opacity: 1;
+    rotate: -1.4deg;
+    scale: 1.01;
+    translate: -3px 2px;
+  }
+
+  100% {
+    opacity: 1;
+    rotate: -2deg;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes copyLift {
+  from {
+    opacity: 0;
+    translate: 0 18px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes stampIn {
+  0% {
+    opacity: 0;
+    scale: 0.92;
+    translate: 0 12px;
+  }
+
+  74% {
+    opacity: 1;
+    scale: 1.03;
+    translate: 0 -1px;
+  }
+
+  100% {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes ticketSlide {
+  from {
+    opacity: 0;
+    rotate: -3.8deg;
+    translate: 28px 24px;
+  }
+
+  to {
+    opacity: 1;
+    rotate: -1.2deg;
+    translate: 0 0;
+  }
+}
+
+@keyframes pinPulse {
+  0% {
+    box-shadow: 0 0 0 0 oklch(0.62 0.13 70 / 0.34);
+  }
+
+  100% {
+    box-shadow: 0 0 0 18px oklch(0.62 0.13 70 / 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header {
+    animation: headerSet 520ms var(--ease) both;
+  }
+
+  .hero-shop-sign {
+    transform-origin: 52% 6%;
+    animation: signSettle 900ms var(--ease) 120ms both;
+  }
+
+  .hero-content .local-line,
+  .hero-content h1,
+  .hero-copy,
+  .hero-service-line span,
+  .hero-actions .button {
+    opacity: 0;
+    animation: copyLift 640ms var(--ease) both;
+  }
+
+  .hero-content .local-line {
+    animation-delay: 180ms;
+  }
+
+  .hero-content h1 {
+    animation-delay: 250ms;
+  }
+
+  .hero-copy {
+    animation-delay: 360ms;
+  }
+
+  .hero-service-line span {
+    animation-name: stampIn;
+  }
+
+  .hero-service-line span:nth-child(1) {
+    animation-delay: 480ms;
+  }
+
+  .hero-service-line span:nth-child(2) {
+    animation-delay: 540ms;
+  }
+
+  .hero-service-line span:nth-child(3) {
+    animation-delay: 600ms;
+  }
+
+  .hero-service-line span:nth-child(4) {
+    animation-delay: 660ms;
+  }
+
+  .hero-service-line span:nth-child(5) {
+    animation-delay: 720ms;
+  }
+
+  .hero-actions .button:nth-child(1) {
+    animation-delay: 760ms;
+  }
+
+  .hero-actions .button:nth-child(2) {
+    animation-delay: 830ms;
+  }
+
+  .quick-ticket {
+    transform-origin: 60% 12%;
+    animation: ticketSlide 720ms var(--ease) 560ms both;
+  }
+
+  .motion-ready [data-reveal] {
+    opacity: 0;
+    translate: 0 24px;
+    transition:
+      opacity 720ms var(--ease),
+      translate 720ms var(--ease);
+  }
+
+  .motion-ready [data-reveal].is-visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .motion-ready .bench-tags li,
+  .motion-ready .repair-list article,
+  .motion-ready .story-sign-inner,
+  .motion-ready .plain-proof li,
+  .motion-ready .hours-grid div,
+  .motion-ready .visit-list li,
+  .motion-ready .closing-mark {
+    opacity: 0;
+    translate: 0 14px;
+    transition:
+      opacity 620ms var(--ease),
+      translate 620ms var(--ease);
+  }
+
+  .motion-ready .is-visible .bench-tags li,
+  .motion-ready .is-visible .repair-list article,
+  .motion-ready .is-visible .story-sign-inner,
+  .motion-ready .is-visible .plain-proof li,
+  .motion-ready .is-visible .hours-grid div,
+  .motion-ready .is-visible .visit-list li,
+  .motion-ready .is-visible .closing-mark {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .motion-ready .is-visible .bench-tags li:nth-child(2),
+  .motion-ready .is-visible .repair-list article:nth-child(2),
+  .motion-ready .is-visible .plain-proof li:nth-child(2),
+  .motion-ready .is-visible .hours-grid div:nth-child(2),
+  .motion-ready .is-visible .visit-list li:nth-child(2) {
+    transition-delay: 70ms;
+  }
+
+  .motion-ready .is-visible .bench-tags li:nth-child(3),
+  .motion-ready .is-visible .repair-list article:nth-child(3),
+  .motion-ready .is-visible .plain-proof li:nth-child(3),
+  .motion-ready .is-visible .hours-grid div:nth-child(3),
+  .motion-ready .is-visible .visit-list li:nth-child(3) {
+    transition-delay: 140ms;
+  }
+
+  .motion-ready .is-visible .bench-tags li:nth-child(4),
+  .motion-ready .is-visible .hours-grid div:nth-child(4) {
+    transition-delay: 210ms;
+  }
+
+  .motion-ready .is-visible .bench-tags li:nth-child(5) {
+    transition-delay: 280ms;
+  }
+
+  .motion-ready .is-visible .bench-tags li:nth-child(6) {
+    transition-delay: 350ms;
+  }
+
+  .motion-ready .is-visible .bench-tags li:nth-child(7) {
+    transition-delay: 420ms;
+  }
+
+  .motion-ready .is-visible .bench-tags li:nth-child(8) {
+    transition-delay: 490ms;
+  }
+
+  .motion-ready .visit.is-visible .pin {
+    animation: pinPulse 900ms var(--ease) 340ms 1;
+  }
 }
 
 @media (max-width: 900px) {
